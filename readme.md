@@ -118,3 +118,5 @@ const API = require('./lib/HarryPotter.js');
 ```hbs
 <p>{{data}}</p>
 ```
+
+10. Run nodemon and load our localhost:3000
