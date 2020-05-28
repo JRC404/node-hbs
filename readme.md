@@ -15,23 +15,22 @@ const app = express(); //initialise express as a function
 
 2. Basic folder structure for our application
 
-> lib
-
-> > index.js
-
-> public
->
-> > style.css
-
-> views
-
-> > layouts
-
-> > > layout.hbs
-
-> > index.hbs
-
-> index.js
+```
+project
+│   index.js
+│   readme.md   
+│
+└───lib
+│      index.js
+│   
+└───public
+│      style.css
+│    
+└───views 
+│   └───layouts
+│          layout.hbs
+│   index.hbs
+```
 
 3. Create your app.get and app.listen for your basic express web-server
 
