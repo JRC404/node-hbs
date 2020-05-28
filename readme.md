@@ -43,3 +43,38 @@ app.listen(3000, () => {
   console.log('listening on port 3000');
 });
 ```
+
+4. Above the app.get but below the const imports, put the following to setup the path for our style.css and other client-side code and the creation of the HBS template: 
+
+```javascript
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.engine('.hbs', hbs({
+    defaultLayout: 'layout',
+    extname: 'hbs'
+}));
+
+app.set('view engine', '.hbs');
+```
+
+5. Setup your layout.hbs like a normal HTML file with a CSS link with a twist
+
+```hbs
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Hello</h1>
+    <p>I am a template</p>
+    {{{body}}}
+</body>
+
+</html>
+```
