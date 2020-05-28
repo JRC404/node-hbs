@@ -21,7 +21,7 @@ project
 │   readme.md   
 │
 └───lib
-│      index.js
+│      HarryPotter.js
 │   
 └───public
 │      style.css
@@ -77,4 +77,44 @@ app.set('view engine', '.hbs');
 </body>
 
 </html>
+```
+
+6. Head to the HarryPotter.js inside of the lib folder now and insert the following for a Harry Potter API function:
+
+```javascript
+const fetch = require('node-fetch');
+const URL = `https://www.potterapi.com/v1/sortinghat`
+
+const getSortingHat = async () => {
+    let data = await fetch(URL);
+
+    let JSObject = await data.json();
+    return JSObject;
+}
+
+module.exports = {
+    getSortingHat
+}
+```
+
+7. Head back to your index.js in the root folder and import your file you just exported near the top of your file:
+
+```javascript
+// below your external module imports
+const API = require('./lib/HarryPotter.js');
+// above your app.use
+```
+
+8. Next, let's go back to our app.get('/') and modify it like this:
+
+```javascript
+    let data = await HarryPotter.getSortingHat();
+    console.log(data)
+    res.render('index', { data });
+```
+
+9. We have put data inside of an object in the res.render, so, in our index.hbs, let's put this: 
+
+```hbs
+<p>{{data}}</p>
 ```
