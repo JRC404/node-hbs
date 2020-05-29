@@ -10,6 +10,7 @@ require('dotenv').config(); // require this above anything that will be using a 
 // const { emilyFunction } = require('./openWeatherMap');
 const openWeatherMap = require('./lib/openWeatherMap'); // multiple imports
 const HarryPotter = require('./lib/HarryPotter');
+const rickAndMortyData = require('./lib/RickMorty');
 
 app.use(express.static(path.join(__dirname, 'public'))); // creating a static path to 'public' folder
 
@@ -45,6 +46,13 @@ app.get('/', async (req, res) => {
 app.get('/about', async (req, res) => {
     res.render('about')
 });
+
+app.get('/rickandmorty', async (req, res) => {
+    let number = 1
+    let data = await rickAndMortyData.rickAndMortyData(number)
+    console.log(data)
+    res.render('rickandmorty')
+})
 
 app.get('/harrypotter', async (req, res) => {
     let data = await HarryPotter.getSortingHat();
